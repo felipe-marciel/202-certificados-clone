@@ -33,6 +33,7 @@ test("GET /c/<código> mostra o certificado", async () => {
   const html = await resposta.text();
   assert.match(html, /Aurora Quintal Medeiros/);
   assert.match(html, /Trilha 1: fundamentos/);
+  assert.match(html, /12 de setembro de 2025/);
 });
 
 test("GET /c/<código> responde 404 quando não existe", async () => {

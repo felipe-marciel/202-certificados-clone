@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { buscar, normalizarCodigo } from "../certificados.js";
 import { validarCodigo } from "../codigo.js";
+import { formatarData } from "../formatar.js";
 
 const rotas = Router();
 
@@ -25,7 +26,12 @@ rotas.get("/c/:codigo", (requisicao, resposta) => {
     resposta.status(404).render("nao-encontrado");
     return;
   }
-  resposta.render("certificado", { certificado });
+  resposta.render("certificado", {
+    certificado: {
+      ...certificado,
+      concluido_em: formatarData(certificado.concluido_em)
+    }
+  });
 });
 
 export default rotas;
